@@ -6,46 +6,12 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets 
-
+from PyQt5 import QtCore, QtGui, QtWidgets
 import sqlite3
-import os
+import os.path
+import sys
 
 class Ui_Add_Doctor(object):
-
-    def adddoctor(self):
-        BASE_DIR = os.path.dirname(os.path.abspath("C:/"))
-        db_file = "\sqlite"
-        db_path = os.path.join(BASE_DIR,db_file,"JMJ.db")
-        connection = sqlite3.connect(db_path)
-
-        username = self.lineEdit()
-        Designation = self.lineEdit_2()
-        phone1 = self.lineEdit_3()
-        address1 = self.lineEdit_4()
-        # username = 'dixon'
-        # Designation = 'admin'
-        # phone1 = '0778095470'
-        # address1 = 'nittambuwa'
-
-        with connection:
-            cur =connection.cursor()
-            cur.execute("INSERT INTO J(name,designation,phone,address)"
-             "values('%s','%s','%s','%s') " %(''.join(username),
-             ''.join(Designation),
-             ''.join(phone1),
-             ''.join(address1)) )
-        
-            print("added successfully")
-            # self.close()
- 
-
-
-
-
-
-
-
     def setupUi(self, Add_Doctor):
         Add_Doctor.setObjectName("Add_Doctor")
         Add_Doctor.resize(800, 600)
@@ -76,13 +42,19 @@ class Ui_Add_Doctor(object):
         self.lineEdit_4.setGeometry(QtCore.QRect(270, 290, 201, 21))
         self.lineEdit_4.setObjectName("lineEdit_4")
         self.btn_add = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_add.setGeometry(QtCore.QRect(300, 360, 75, 23))
+        self.btn_add.setGeometry(QtCore.QRect(320, 390, 75, 23))
         self.btn_add.setObjectName("btn_add")
         self.btn_add.clicked.connect(self.adddoctor)
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(240, 60, 231, 41))
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_5.setGeometry(QtCore.QRect(270, 330, 201, 21))
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.label_6 = QtWidgets.QLabel(self.centralwidget)
+        self.label_6.setGeometry(QtCore.QRect(170, 330, 71, 21))
+        self.label_6.setObjectName("label_6")
         Add_Doctor.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(Add_Doctor)
         self.statusbar.setObjectName("statusbar")
@@ -100,7 +72,40 @@ class Ui_Add_Doctor(object):
         self.label_4.setText(_translate("Add_Doctor", "Address"))
         self.btn_add.setText(_translate("Add_Doctor", "Add Doctor"))
         self.label_5.setText(_translate("Add_Doctor", "ADD DOCTOR"))
+        self.label_6.setText(_translate("Add_Doctor", "Password"))
 
+
+
+    def adddoctor(self):
+        username = self.lineEdit.text()
+        Designation1 =self.lineEdit_2.text()
+        phone1 = self.lineEdit_3.text()
+        address1 =self.lineEdit_4.text()
+        password1 =self.lineEdit_5.text()
+
+
+
+        BASE_DIR = os.path.dirname(os.path.abspath("C:/"))
+        db_file = "\sqlite"
+        db_path = os.path.join(BASE_DIR,db_file,"JMJ.db")
+        connection = sqlite3.connect(db_path)
+
+
+        with connection:
+            cur =connection.cursor()
+            cur.execute(" INSERT INTO J(name,designation	,phone,address,password)"
+                         "VALUES('%s','%s' ,'%s','%s','%s')" %(''.join(username),
+                         ''.join(Designation1),
+                         ''.join(phone1),
+                         ''.join(address1),
+                        ''.join(password1))
+            
+            
+            )
+	
+	
+	
+	
 
 if __name__ == "__main__":
     import sys

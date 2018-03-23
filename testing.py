@@ -61,7 +61,7 @@ model.add(Dropout(0.5))
 model.add(Dense(1))
 model.add(Activation('sigmoid'))
 
-model.load_weights('./models/saved_model_1.h5')
+model.load_weights('./models/saved_model_4.h5')
 
 model.compile(loss='binary_crossentropy',
               optimizer='adam',

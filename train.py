@@ -68,10 +68,10 @@ testing = test_datagen.flow_from_directory(
 
 model.fit_generator(
         training,
-        steps_per_epoch=1,
-        epochs=100,
+        steps_per_epoch=20,
+        epochs=50,
         validation_data=testing,
         validation_steps=1)
 
 # to save model weights
-model.save_weights('./models/saved_model_1.h5')
+model.save_weights('./models/saved_model_4.h5')

@@ -7,11 +7,19 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-# from tkinter import *
+# from QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFileDialog
+
+import sys
+# from QtGui import QFileDialog
+# from PyQt5.QtGui import QFileDialog 
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+
 
 
 class Ui_Breast_Cancer_prediction_tool(object):
     def setupUi(self, Breast_Cancer_prediction_tool):
+        self.window = Breast_Cancer_prediction_tool
         Breast_Cancer_prediction_tool.setObjectName("Breast_Cancer_prediction_tool")
         Breast_Cancer_prediction_tool.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(Breast_Cancer_prediction_tool)
@@ -22,6 +30,9 @@ class Ui_Breast_Cancer_prediction_tool(object):
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(70, 270, 75, 23))
         self.pushButton.setObjectName("pushButton")
+        self.pushButton.clicked.connect(self.browse)
+        
+
         Breast_Cancer_prediction_tool.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Breast_Cancer_prediction_tool)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
@@ -54,9 +65,19 @@ class Ui_Breast_Cancer_prediction_tool(object):
 
     def retranslateUi(self, Breast_Cancer_prediction_tool):
         _translate = QtCore.QCoreApplication.translate
+        
         Breast_Cancer_prediction_tool.setWindowTitle(_translate("Breast_Cancer_prediction_tool", "MainWindow"))
         self.label.setText(_translate("Breast_Cancer_prediction_tool", "Breast Cancer Prediction"))
         self.pushButton.setText(_translate("Breast_Cancer_prediction_tool", "PushButton"))
+        
+
+    def browse(self):
+        filepath = QtWidgets.QFileDialog.getOpenFileName(self.window,'single file',"-/desktop/Images",'*.png')
+        
+        
+
+
+
 
 
 if __name__ == "__main__":
@@ -67,4 +88,3 @@ if __name__ == "__main__":
     ui.setupUi(Breast_Cancer_prediction_tool)
     Breast_Cancer_prediction_tool.show() 
     sys.exit(app.exec_())
-

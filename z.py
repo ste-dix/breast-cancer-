@@ -8,8 +8,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
+
 import sys
 from keras.preprocessing.image import ImageDataGenerator
+from PyQt5.QtGui import *
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
@@ -42,22 +45,30 @@ class Ui_Breast_Cancer_prediction_tool(object):
         self.displayImage =Breast_Cancer_prediction_tool
         
         Breast_Cancer_prediction_tool.setObjectName("Breast_Cancer_prediction_tool")
-        Breast_Cancer_prediction_tool.resize(800, 517)
+        Breast_Cancer_prediction_tool.resize(500, 392)
         self.centralwidget = QtWidgets.QWidget(Breast_Cancer_prediction_tool)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(200, 10, 271, 41))
+        self.label.setGeometry(QtCore.QRect(180, 10, 271, 41))
         self.label.setObjectName("label")
+        
         self.Browse_btn = QtWidgets.QPushButton(self.centralwidget)
-        self.Browse_btn.setGeometry(QtCore.QRect(120, 320, 75, 23))
+        self.Browse_btn.setGeometry(QtCore.QRect(90, 270,121, 51))
         self.image= None
         self.Browse_btn.setObjectName("Browse_btn")
         self.Browse_btn.clicked.connect(self.browse)
         self.ImageBox = QtWidgets.QLabel(self.centralwidget)
-        self.ImageBox.setGeometry(QtCore.QRect(36, 70, 311, 201))
+        self.ImageBox.setGeometry(QtCore.QRect(36, 70, 261, 201))
         self.ImageBox.setFrameShape(QtWidgets.QFrame.Box)
-        self.ImageBox.setText("")
+        # self.ImageBox.setText("erp")
         self.ImageBox.setObjectName("ImageBox")
+
+        self.Predictor = QtWidgets.QLabel(self.centralwidget)
+        self.Predictor.setGeometry(QtCore.QRect(320, 220, 191, 51))
+        self.Predictor.setFrameShape(QtWidgets.QFrame.Box)
+        self.Predictor.setText("")
+        self.Predictor.setObjectName("Predictor")
+
         Breast_Cancer_prediction_tool.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(Breast_Cancer_prediction_tool)
         self.statusbar.setObjectName("statusbar")
@@ -78,32 +89,25 @@ class Ui_Breast_Cancer_prediction_tool(object):
         filepath = QtWidgets.QFileDialog.getOpenFileName(self.window,' file',"-/desktop/Images",'*.png')
         print (filepath[0])
 
-        
+        self.window.ImageBox = QtWidgets.QLabel(self.centralwidget)
+        self.window.ImageBox.setGeometry(QtCore.QRect(36, 70, 261, 201))
+        self.window.ImageBox.setFrameShape(QtWidgets.QFrame.Box)
+        # pixmap= QtGui.QPixmap('D:/Final Project/Software/validation/non-suspicious/21.png')
+        self.window.ImageBox.setPixmap(QtGui.QPixmap(filepath[0]))
+        self.window.ImageBox.show()
 
-
-    #     self.loadImage(filepath)
-
-    # def loadImage1(self,fname):
-    #     self.image = cv2.imread(fname)
-    #     self.displayImage()
-        
-
-    #     fpath = cv2.imread(filepath,0)
-    #     print (fpath) 
-
-    #     sys.exit()
 
         # os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
         # dimensions 
         img_width, img_height = 150, 150
-        print('hello')
+        
 
         if K.image_data_format() == 'channels_first':
             input_shape = (3, img_width, img_height)
         else:
             input_shape = (img_width, img_height, 3)
-        print('hello')
+        
 
         names = {
             0 : 'Suspicious',
@@ -115,7 +119,7 @@ class Ui_Breast_Cancer_prediction_tool(object):
 
         # _dir =  sys.argv[1]
         _dir = str(filepath[0])
-        print('hello')
+        
 
 
 
@@ -164,7 +168,33 @@ class Ui_Breast_Cancer_prediction_tool(object):
         classes = model.predict(images)
 
         p_classes = model.predict_classes(images)
+        
+        
         print (names[p_classes[0][0]])
+        result = names[p_classes[0][0]]
+        print (result)
+        # F = print (names[p_classes[0][0]])
+        
+
+
+
+        # self.Predictor = QtWidgets.QLabel(self.centralwidget)
+        # self.Predictor.setGeometry(QtCore.QRect(320, 220, 191, 51))
+        # self.Predictor.setFrameShape(QtWidgets.QFrame.Box)
+        self.Predictor.setText(result)
+        # self.Predictor.setObjectName("Predictor")
+        
+        # label = QtGui.QLabel(self)
+        # label.setText(F)
+
+        # self.ImageBox = QtWidgets.QLabel()
+        # self.ImageBox.setGeometry(QtCore.QRect(36, 70, 311, 201))
+        # self.ImageBox.setFrameShape(QtWidgets.QFrame.Box)
+        # # pixmap= QtGui.QPixmap('D:/Final Project/Software/validation/non-suspicious/21.png')
+        # # self.ImageBox.setPixmap(QtGui.QPixmap(filepath[0]))
+        # # self.ImageBox.show()
+        # self.ImageBox.setText(F)
+        # self.ImageBox.setObjectName("ImageBox")
             
 
 

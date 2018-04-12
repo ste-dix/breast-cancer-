@@ -10,6 +10,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import sqlite3
 import os.path
 import sys
+from PyQt5.QtGui import *
 
 class Ui_Add_Doctor(object):
     def setupUi(self, Add_Doctor):
@@ -61,7 +62,28 @@ class Ui_Add_Doctor(object):
         Add_Doctor.setStatusBar(self.statusbar)
 
         self.retranslateUi(Add_Doctor)
-        QtCore.QMetaObject.connectSlotsByName(Add_Doctor)
+        QtCore.QMetaObject.connectSlotsByName(Add_Doctor) 
+
+        
+    def massagebox(self,title,message):
+        msgbox = QtWidgets.QMessageBox()
+        # msgbox.setIcon(QtWidgets.QMessageBox.warning)
+        msgbox.setWindowTitle(title)
+        msgbox.setText(message)
+        msgbox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        msgbox.exec_()
+
+    def clear (self):
+
+        self.lineEdit.setText("")
+        self.lineEdit_2.setText("")
+        self.lineEdit_3.setText("")
+        self.lineEdit_4.setText("")
+        self.lineEdit_5.setText("")
+
+    
+
+
 
     def retranslateUi(self, Add_Doctor):
         _translate = QtCore.QCoreApplication.translate
@@ -73,6 +95,11 @@ class Ui_Add_Doctor(object):
         self.btn_add.setText(_translate("Add_Doctor", "Add Doctor"))
         self.label_5.setText(_translate("Add_Doctor", "ADD DOCTOR"))
         self.label_6.setText(_translate("Add_Doctor", "Password"))
+
+
+    # def clear (self):
+    #     self.lineEdit.setText("")
+    #     self.lineEdit_2.setText("")
 
 
 
@@ -93,7 +120,7 @@ class Ui_Add_Doctor(object):
 
         with connection:
             cur =connection.cursor()
-            cur.execute(" INSERT INTO J(name,designation	,phone,address,password)"
+            cur.execute(" INSERT INTO Employee(name,designationid	,phone,address,password)"
                          "VALUES('%s','%s' ,'%s','%s','%s')" %(''.join(username),
                          ''.join(Designation1),
                          ''.join(phone1),
@@ -101,8 +128,14 @@ class Ui_Add_Doctor(object):
                         ''.join(password1))
             
             
-            )
-	
+                            )
+
+
+            
+
+            self.massagebox('Insert','Data Inserted')
+            self.clear()
+            # self.clear()
 	
 	
 	

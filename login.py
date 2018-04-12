@@ -8,10 +8,17 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets 
 import sqlite3
-from untitled import  Ui_Breast_Cancer_prediction_tool
+# from untitled import  Ui_Breast_Cancer_prediction_tool
 import os.path
 import sys
 from Admin_main import Ui_admin_main
+from z import Ui_Breast_Cancer_prediction_tool
+from PyQt5.QtGui import *
+
+
+
+
+
 
 
 
@@ -56,16 +63,19 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(661, 292)
+        
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.Uname = QtWidgets.QLineEdit(self.centralwidget)
         self.Uname.setGeometry(QtCore.QRect(290, 100, 161, 21))
         self.Uname.setObjectName("Uname")
+        self.Uname.setPlaceholderText("User Name")
         self.password_2 = QtWidgets.QLineEdit(self.centralwidget)
         self.password_2.setGeometry(QtCore.QRect(290, 160, 161, 20))
         self.password_2.setEchoMode(QtWidgets.QLineEdit.Password)
         self.password_2.setPlaceholderText("")
         self.password_2.setObjectName("password_2")
+        self.password_2.setPlaceholderText("Password")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(190, 100, 71, 21))
         self.label.setObjectName("label")
@@ -77,6 +87,7 @@ class Ui_MainWindow(object):
         self.Login.setObjectName("Login")
         self.Login.clicked.connect(self.loginCheck)
 
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -84,6 +95,11 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+       
+
+
+
 
    
 
@@ -97,11 +113,11 @@ class Ui_MainWindow(object):
 
 
     def massagebox(self,title,message):
-            msgbox = QtGui.QMessageBox()
-            msgbox.setIcon(QtGui.QMessageBox.WARNING)
+            msgbox = QtWidgets.QMessageBox()
+            # msgbox.setIcon(QtWidgets.QMessageBox.warning)
             msgbox.setWindowTitle(title)
             msgbox.setText(message)
-            msgbox.setStandardButtons(QtGui.QMessageBox.Ok)
+            msgbox.setStandardButtons(QtWidgets.QMessageBox.Ok)
             msgbox.exec_()
 
     def openwindow(self):
@@ -119,6 +135,11 @@ class Ui_MainWindow(object):
             self.window.show()
 
 
+    def clear(self):
+        self.Uname.setText("")
+        self.password_2.setText("")
+
+
 
     def loginCheck(self):
 
@@ -129,6 +150,7 @@ class Ui_MainWindow(object):
 
         username = self.Uname.text()
         password = self.password_2.text()
+        # de =self.Designation.text()
         
         # if (self.Uname.text() >'1'):
 
@@ -143,27 +165,64 @@ class Ui_MainWindow(object):
 
         # connection = sqlite3.connect("breastCancer.db")
         cursor = connection.cursor()    
-        cursor.execute("SELECT * FROM JMJ WHERE name =? AND password =?" ,(username ,password))
+        cursor.execute("SELECT * FROM employee WHERE name =? AND password =?" ,(username ,password))
         result = cursor.fetchall(); 
         
-        for r in result:
-            des = r[3]
-
-
-
-        if(des==2):
-            print("user found !")
-            self.openwindowAdmin()
-
-        elif (des==3):
-            self.openwindow()
-
-            
-
+        if (len(result) > 0):
+            for r in result:
+                des = r[2]
+                if(des==2):
+                    print("user found !")
+                    MainWindow.hide()
+                    self.openwindowAdmin()  
+                    # self.massagebox('success','successfully')
+                elif (des==3):
+                    MainWindow.hide()
+                    self.openwindow()
+                else:
+                    self.clear()
+                    print("user type not found") 
+                    # self.massagebox('invalid','invalid User')
+                    # # self.massagebox('warning','Enter Correct username & password')
         else:
             print("user name not found") 
+            self.clear()
+            self.massagebox('invalid','invalid User')
             # self.massagebox('warning','Enter Correct username & password')
         # connection.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        
         
     
 

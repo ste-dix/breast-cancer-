@@ -39,6 +39,7 @@ names = {
 _dir =  sys.argv[1]
 
 
+
 model = Sequential()
 model.add(Conv2D(32, (3, 3), input_shape=input_shape))
 

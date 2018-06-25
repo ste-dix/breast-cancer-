@@ -61,15 +61,48 @@ class Ui_MainWindow(object):
 
 
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(661, 292)
+        # MainWindow.setObjectName("MainWindow")
+        # MainWindow.resize(661, 292)
         
+        # self.centralwidget = QtWidgets.QWidget(MainWindow)
+        # self.centralwidget.setObjectName("centralwidget")
+        # self.Uname = QtWidgets.QLineEdit(self.centralwidget)
+        # self.Uname.setGeometry(QtCore.QRect(290, 100, 161, 21))
+        # self.Uname.setObjectName("Uname")
+        # self.Uname.setPlaceholderText("User Name")
+        # self.password_2 = QtWidgets.QLineEdit(self.centralwidget)
+        # self.password_2.setGeometry(QtCore.QRect(290, 160, 161, 20))
+        # self.password_2.setEchoMode(QtWidgets.QLineEdit.Password)
+        # self.password_2.setPlaceholderText("")
+        # self.password_2.setObjectName("password_2")
+        # self.password_2.setPlaceholderText("Password")
+        # self.label = QtWidgets.QLabel(self.centralwidget)
+        # self.label.setGeometry(QtCore.QRect(190, 100, 71, 21))
+        # self.label.setObjectName("label")
+        # self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        # self.label_2.setGeometry(QtCore.QRect(190, 160, 71, 21))
+        # self.label_2.setObjectName("label_2")
+        # self.Login = QtWidgets.QPushButton(self.centralwidget)
+        # self.Login.setGeometry(QtCore.QRect(300, 210, 75, 23))
+        # self.Login.setObjectName("Login")
+        # self.Login.clicked.connect(self.loginCheck)
+
+
+        # MainWindow.setCentralWidget(self.centralwidget)
+        # self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        # self.statusbar.setObjectName("statusbar")
+        # MainWindow.setStatusBar(self.statusbar)
+
+        # self.retranslateUi(MainWindow)
+        # QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(661, 324)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.Uname = QtWidgets.QLineEdit(self.centralwidget)
         self.Uname.setGeometry(QtCore.QRect(290, 100, 161, 21))
         self.Uname.setObjectName("Uname")
-        self.Uname.setPlaceholderText("User Name")
+        self.Uname.setPlaceholderText("User name")
         self.password_2 = QtWidgets.QLineEdit(self.centralwidget)
         self.password_2.setGeometry(QtCore.QRect(290, 160, 161, 20))
         self.password_2.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -78,16 +111,34 @@ class Ui_MainWindow(object):
         self.password_2.setPlaceholderText("Password")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(190, 100, 71, 21))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(190, 160, 71, 21))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
         self.Login = QtWidgets.QPushButton(self.centralwidget)
-        self.Login.setGeometry(QtCore.QRect(300, 210, 75, 23))
+        self.Login.setGeometry(QtCore.QRect(330, 210, 75, 31))
+        self.Login.setStyleSheet("color: rgb(255, 255, 255);\n"
+"background-color: rgb(58, 117, 175);")
         self.Login.setObjectName("Login")
+        self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setGeometry(QtCore.QRect(460, 280, 291, 21))
         self.Login.clicked.connect(self.loginCheck)
-
-
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setItalic(True)
+        font.setWeight(75)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -95,6 +146,43 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
        
 
@@ -109,6 +197,14 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "User Name"))
         self.label_2.setText(_translate("MainWindow", "Password"))
         self.Login.setText(_translate("MainWindow", "Login"))
+        self.label_3.setText(_translate("MainWindow", "  Copyright  © 2018 Stedix"))
+
+        #  _translate = QtCore.QCoreApplication.translate
+        # MainWindow.setWindowTitle(_translate("MainWindow", "Login"))
+        # self.label.setText(_translate("MainWindow", "User Name"))
+        # self.label_2.setText(_translate("MainWindow", "Password"))
+        # self.Login.setText(_translate("MainWindow", "Login"))
+        # self.label_3.setText(_translate("MainWindow", "  Copyright  © 2018 Stedix"))
 
 
 
